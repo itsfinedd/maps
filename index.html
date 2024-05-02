@@ -1,27 +1,16 @@
 <!DOCTYPE html>
-<!--
- @license
- Copyright 2019 Google LLC. All Rights Reserved.
- SPDX-License-Identifier: Apache-2.0
--->
 <html>
   <head>
     <title>Simple Polygon</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script>
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */
-      // This example creates a simple polygon representing the Bermuda Triangle.
       function initMap() {
         const map = new google.maps.Map(document.getElementById("map"), {
           zoom: 12,
           center: { lat: -16.409047, lng: -71.537450 },
           mapTypeId: "terrain",
         });
-        // Define the LatLng coordinates for the polygon's path.
+        // Definiendo los puntos de la delimitacion.
         const arequipaCoords = [
           { lat: -16.413419, lng: -71.539593 },
           { lat: -16.398190, lng: -71.532024 },
@@ -94,20 +83,10 @@
       window.initMap = initMap;
     </script>
     <style>
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */
-      /** 
-       * Always set the map height explicitly to define the size of the div element
-       * that contains the map. 
-       */
       #map {
         height: 100%;
       }
 
-      /* Optional: Makes the sample page fill the window. */
       html,
       body {
         height: 100%;
