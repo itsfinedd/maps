@@ -3,7 +3,7 @@ function initMap() {
     {
     zoom: 12,
     center: { lat: -16.409047, lng: -71.537450 },
-    mapTypeId: "terrain",
+    mapTypeId: "roadmap",
     });
   // Definiendo los puntos de la delimitacion.
   const arequipaCoords = [
