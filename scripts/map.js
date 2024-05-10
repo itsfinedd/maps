@@ -51,8 +51,24 @@ function initMap() {
     { lat: -16.407585, lng: -71.541123 }, // Parada intermedia
     { lat: -16.410487, lng: -71.541193 }, // Parada intermedia
     { lat: -16.413258, lng: -71.541729 }, // Parada en San Miguel
-    ];
+    { lat: -16.416424, lng: -71.542336 }, // Parada intermedia
+    { lat: -16.418891, lng: -71.542961 }, // Parada intermedia
+    { lat: -16.423235, lng: -71.544436 }, // Parada intermedia
+    { lat: -16.428443, lng: -71.544560 }, // Parada intermedia
+    { lat: -16.432284, lng: -71.544535 }, // Parada final
+  ];
 
+  // Coordenadas de las paradas de autobus para la ruta de 15 de agosto
+  const quinceAgostoCoords = [
+    { lat: -16.404872, lng: -71.526307 }, // Parada en A
+    { lat: -16.408396, lng: -71.528090 }, // Parada intermedia
+    { lat: -16.411041, lng: -71.530149 }, // Parada intermedia
+    { lat: -16.414063, lng: -71.531403 }, // Parada intermedia
+    { lat: -16.418161, lng: -71.534527 }, // Parada intermedia
+    { lat: -16.422159, lng: -71.536933 }, // Parada intermedia
+    { lat: -16.425858, lng: -71.538792 }, // Parada en B
+  ];
+  
     // Agregar marcadores para las paradas de autobús
     caymaSanMiguelCoords.forEach((coords, index) => {
       new google.maps.Marker({
@@ -60,8 +76,23 @@ function initMap() {
       map: map,
       label: (index + 1).toString() // Etiquetas numéricas para las paradas
       });
+       marker.addListener("click", () => {
+      infoWindow.setContent(`Parada ${index + 1} (Cayma)`);
+      infoWindow.open(map, marker);
     });
+  });
+    // Agregar marcadores para las paradas de autobús de 15 de agosto
+  quinceAgostoCoords.forEach((coords, index) => {
+    const marker = new google.maps.Marker({
+      position: coords,
+      map: map,
+      label: (index + 1).toString() // Etiquetas numéricas para las paradas
+    });
+    marker.addListener("click", () => {
+      infoWindow.setContent(`Parada ${index + 1} (15 de agosto)`);
+      infoWindow.open(map, marker);
+    });
+  });
 }
 
 window.initMap = initMap;
-
