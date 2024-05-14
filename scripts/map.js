@@ -64,9 +64,9 @@ function initMap() {
   });
 
   const SMICoordenadas = [
-    { lat: -16.386832, lng: -71.542114 }, // Parada en Cayma
-    { lat: -16.394563, lng: -71.543032 }, // Parada intermedia
-    { lat: -16.398527, lng: -71.544397 }, // Parada intermedia
+    { lat: -16.416442, lng: -71.481015 }, // Paradero Inicial
+    { lat: -16.414558, lng: -71.482298 }, // Parada intermedia
+   /* { lat: -16.398527, lng: -71.544397 }, // Parada intermedia
     { lat: -16.402341, lng: -71.542971 }, // Parada intermedia
     { lat: -16.407585, lng: -71.541123 }, // Parada intermedia
     { lat: -16.410487, lng: -71.541193 }, // Parada intermedia
@@ -76,6 +76,7 @@ function initMap() {
     { lat: -16.423235, lng: -71.544436 }, // Parada intermedia
     { lat: -16.428443, lng: -71.544560 }, // Parada intermedia
     { lat: -16.432284, lng: -71.544535 }, // Parada final
+  */
   ]
 
   const SMIRuta = new google.maps.Polyline({
