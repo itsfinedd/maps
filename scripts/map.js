@@ -92,7 +92,7 @@ function initMap() {
     { lat: -16.422261, lng: -71.544020 }, // inicio Vuelta incas
     { lat: -16.417168, lng: -71.532936 }, // incas con alcides
     { lat: -16.408703, lng: -71.537064 }, //  alcides con jorge chavez
-
+    { lat: -16.398090, lng: -71.523896 }, //  goyeneche con Muñoz
   ];
 
   const SMVRuta = new google.maps.Polyline({
