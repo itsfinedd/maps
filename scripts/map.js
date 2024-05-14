@@ -79,7 +79,7 @@ function initMap() {
     { lat: -16.423040, lng: -71.541570 }, // avelino pos hostal avelino caceres
     { lat: -16.425318, lng: -71.543413 }, // ruta termino de ruta ida
 
-  ]
+  ];
 
   const SMIRuta = new google.maps.Polyline({
     path: SMICoordenadas,
