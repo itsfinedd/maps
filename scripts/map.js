@@ -1,49 +1,69 @@
 function initMap() {
-  const map = new google.maps.Map(document.getElementById("map"),
-    {
-    zoom: 12,
-    center: { lat: -16.409047, lng: -71.537450 },
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 13,
+    center: { lat: -16.40588, lng: -71.53165 },
     mapTypeId: "roadmap",
-    });
-  // Definiendo los puntos de la delimitacion.
-  const arequipaCoords = [
-    { lat: -16.298289, lng:-71.563641},
-    { lat: -16.311915, lng:-71.592464},
-    { lat: -16.372130, lng:-71.631841},
-    { lat: -16.425300, lng:-71.587131},
-    { lat: -16.469385, lng:-71.546208},
-    { lat: -16.418423, lng:-71.462035},
-    { lat: -16.401039, lng:-71.474581},
-    { lat: -16.357439, lng:-71.501625},
+  });
+
+  // Encoded polyline: f`ecBzjjsLx@lJbGe@dAxNaGnBmBfCmLhSyNnWoOhWc\`m@iU~_@te@dm@tRpWaFrEgJmM
+
+  const CICoordenadas= [
+    { lat: -16.41492, lng: -71.49246},
+    { lat: -16.41521, lng: -71.49429},
+    { lat: -16.41651, lng: -71.49410},
+    { lat: -16.41686, lng: -71.49663},
+    { lat: -16.41557, lng: -71.49719},
+    { lat: -16.41502, lng: -71.49787},
+    { lat: -16.41287, lng: -71.50112},
+    { lat: -16.41034, lng: -71.50504},
+    { lat: -16.40770, lng: -71.50893},
+    { lat: -16.40304, lng: -71.51630},
+    { lat: -16.39947, lng: -71.52158},
+    { lat: -16.40566, lng: -71.52897},
+    { lat: -16.40881, lng: -71.53290},
+    { lat: -16.40768, lng: -71.53396},
+    { lat: -16.40588, lng: -71.53165},
   ];
-  // Construct the polygon.
-  const arequipaPolygon = new google.maps.Polygon({
-    paths: arequipaCoords,
+  const CIRuta = new google.maps.Polyline({
+    path: CICoordenadas,
     strokeColor: "#FF0000",
-    strokeOpacity: 0.8,
-    strokeWeight: 2,
-    fillColor: "#FF0000",
-    fillOpacity: 0,
-    });
+    strokeOpacity: 0.7,
+    strokeWeight: 5,
+  });
 
-  arequipaPolygon.setMap(map);
-  // Modificación para colocar la dirección web de los datos de la ruta del autobús
-  const infoWindow = new google.maps.InfoWindow({
-    content: "<ejemplodireccionweb'>Enlace a los datos de la ruta del autobús</a>"
-    });
-  
-  const marker = new google.maps.Marker({
-    position: { lat: -16.398140, lng: -71.536535 },
-    map: map,
-    title: "Arequipa"
-    });
+  // Encoded polyline: rgccBv_rsLvCuBfAqAkO_SjL}LvB~D^bCr@z@lCsAmFsLgQ_^f@WwAmCkBkHg@sCtMiE{D{HjcAagBlG}BcA{N}Ff@y@{I
+  const CVCoordenadas= [
+    { lat: -16.40586, lng: -71.53164},
+    { lat: -16.40662, lng: -71.53105},
+    { lat: -16.40698, lng: -71.53064},
+    { lat: -16.40436, lng: -71.52744},
+    { lat: -16.40650, lng: -71.52521},
+    { lat: -16.40710, lng: -71.52617},
+    { lat: -16.40726, lng: -71.52683},
+    { lat: -16.40752, lng: -71.52713},
+    { lat: -16.40823, lng: -71.52671},
+    { lat: -16.40704, lng: -71.52453},
+    { lat: -16.40412, lng: -71.51957},
+    { lat: -16.40432, lng: -71.51945},
+    { lat: -16.40388, lng: -71.51874},
+    { lat: -16.40334, lng: -71.51724},
+    { lat: -16.40314, lng: -71.51650},
+    { lat: -16.40549, lng: -71.51549},
+    { lat: -16.40455, lng: -71.51391},
+    { lat: -16.41549, lng: -71.49726},
+    { lat: -16.41684, lng: -71.49663},
+    { lat: -16.41650, lng: -71.49409},
+    { lat: -16.41523, lng: -71.49429},
+    { lat: -16.41494, lng: -71.49255},
+  ];
+  const CVRuta = new google.maps.Polyline({
+    path: CVCoordenadas,
+    strokeColor: "#0000FF",
+    strokeOpacity: 0.7,
+    strokeWeight: 5,
+  });
 
-    marker.addListener("click", () => {
-    infoWindow.open(map, marker);
-    });
-
-  // Coordenadas de las paradas de autobus para la ruta de Cayma (usando la foto del bus del otro archivo como ejemplo)
-  const caymaSanMiguelCoords = [
+  const SMICoordenadas = [
     { lat: -16.386832, lng: -71.542114 }, // Parada en Cayma
     { lat: -16.394563, lng: -71.543032 }, // Parada intermedia
     { lat: -16.398527, lng: -71.544397 }, // Parada intermedia
@@ -56,43 +76,18 @@ function initMap() {
     { lat: -16.423235, lng: -71.544436 }, // Parada intermedia
     { lat: -16.428443, lng: -71.544560 }, // Parada intermedia
     { lat: -16.432284, lng: -71.544535 }, // Parada final
-  ];
+  ]
 
-  // Coordenadas de las paradas de autobus para la ruta de 15 de agosto
-  const quinceAgostoCoords = [
-    { lat: -16.404872, lng: -71.526307 }, // Parada en A
-    { lat: -16.408396, lng: -71.528090 }, // Parada intermedia
-    { lat: -16.411041, lng: -71.530149 }, // Parada intermedia
-    { lat: -16.414063, lng: -71.531403 }, // Parada intermedia
-    { lat: -16.418161, lng: -71.534527 }, // Parada intermedia
-    { lat: -16.422159, lng: -71.536933 }, // Parada intermedia
-    { lat: -16.425858, lng: -71.538792 }, // Parada en B
-  ];
-  
-    // Agregar marcadores para las paradas de autobús
-    caymaSanMiguelCoords.forEach((coords, index) => {
-      new google.maps.Marker({
-      position: coords,
-      map: map,
-      label: (index + 1).toString() // Etiquetas numéricas para las paradas
-      });
-       marker.addListener("click", () => {
-      infoWindow.setContent(`Parada ${index + 1} (Cayma)`);
-      infoWindow.open(map, marker);
-    });
+  const SMIRuta = new google.maps.Polyline({
+    path: SMICoordenadas,
+    strokeColor: "#7D2181",
+    strokeOpacity: 0.7,
+    strokeWeight: 5,
   });
-    // Agregar marcadores para las paradas de autobús de 15 de agosto
-  quinceAgostoCoords.forEach((coords, index) => {
-    const marker = new google.maps.Marker({
-      position: coords,
-      map: map,
-      label: (index + 1).toString() // Etiquetas numéricas para las paradas
-    });
-    marker.addListener("click", () => {
-      infoWindow.setContent(`Parada ${index + 1} (15 de agosto)`);
-      infoWindow.open(map, marker);
-    });
-  });
+
+  CIRuta.setMap(map);
+  CVRuta.setMap(map);
+  SMIRuta.setMap(map);
 }
 
 window.initMap = initMap;
