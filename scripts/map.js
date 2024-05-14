@@ -75,8 +75,8 @@ function initMap() {
     { lat: -16.399505, lng: -71.521551 }, // Independicia con mariscal
     { lat: -16.411114, lng: -71.535722 }, // idependenci con alcides carrion
     { lat: -16.423494, lng: -71.532151 }, // LAcides carrion con Huracacan
-    { lat: -16.425318, lng: -71.543413 }, // carrion con avelino
-    { lat: -16.423040, lng: -71.541570 }, // avelino pos hostal avelino caceres
+    { lat: -16.425256, lng: -71.533372 }, // carrion con avelino
+   
     { lat: -16.425318, lng: -71.543413 }, // ruta termino de ruta ida
 
   ];
