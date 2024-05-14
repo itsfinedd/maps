@@ -6,7 +6,7 @@ function initMap() {
   });
 
   // Encoded polyline: f`ecBzjjsLx@lJbGe@dAxNaGnBmBfCmLhSyNnWoOhWc\`m@iU~_@te@dm@tRpWaFrEgJmM
-
+//ruta 15 de agosto ida
   const CICoordenadas= [
     { lat: -16.41492, lng: -71.49246},
     { lat: -16.41521, lng: -71.49429},
@@ -32,6 +32,7 @@ function initMap() {
   });
 
   // Encoded polyline: rgccBv_rsLvCuBfAqAkO_SjL}LvB~D^bCr@z@lCsAmFsLgQ_^f@WwAmCkBkHg@sCtMiE{D{HjcAagBlG}BcA{N}Ff@y@{I
+  ////ruta 15 de agosto vuelta
   const CVCoordenadas= [
     { lat: -16.40586, lng: -71.53164},
     { lat: -16.40662, lng: -71.53105},
@@ -62,7 +63,7 @@ function initMap() {
     strokeOpacity: 0.7,
     strokeWeight: 5,
   });
-
+ ////ruta la perla ida
   const SMICoordenadas = [
     { lat: -16.416442, lng: -71.481015 }, // Paradero inicio Ida Av Jesus
     { lat: -16.414558, lng: -71.482298 }, // Av LOs Incas
@@ -87,7 +88,7 @@ function initMap() {
     strokeOpacity: 0.7,
     strokeWeight: 5,
   });
-
+////ruta la perla vuelta
  const SMVCoordenadas = [
     { lat: -16.422261, lng: -71.544020 }, // inicio Vuelta incas
     { lat: -16.417168, lng: -71.532936 }, // incas con alcides
