@@ -77,7 +77,7 @@ function initMap() {
     { lat: -16.423494, lng: -71.532151 }, // LAcides carrion con Huracacan
     { lat: -16.425256, lng: -71.533372 }, // carrion con avelino
    
-    { lat: -16.425318, lng: -71.543413 }, // ruta termino de ruta ida
+    { lat: -16.422575, lng: -71.543924 }, // ruta termino de ruta ida
 
   ];
 
