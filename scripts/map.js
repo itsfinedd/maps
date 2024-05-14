@@ -77,7 +77,7 @@ function initMap() {
     { lat: -16.423494, lng: -71.532151 }, // LAcides carrion con Huracacan
     { lat: -16.425256, lng: -71.533372 }, // carrion con avelino
    
-    { lat: -16.422575, lng: -71.543924 }, // ruta termino de ruta ida
+    { lat: -16.422519, lng: -71.544020 }, // ruta termino de ruta ida
 
   ];
 
@@ -88,9 +88,25 @@ function initMap() {
     strokeWeight: 5,
   });
 
+ const SMVCoordenadas = [
+    { lat: -16.422261, lng: -71.544020 }, // inicio Vuelta incas
+    { lat: -16.417168, lng: -71.532936 }, // incas con alcides
+    { lat: -16.408703, lng: -71.537064 }, //  alcides con jorge chavez
+
+  ];
+
+  const SMVRuta = new google.maps.Polyline({
+    path: SMVCoordenadas,
+    strokeColor: "#ff8000",
+    strokeOpacity: 0.7,
+    strokeWeight: 5,
+  });
+
+  
   CIRuta.setMap(map);
   CVRuta.setMap(map);
   SMIRuta.setMap(map);
+  SMVRuta.setMap(map);
 }
 
 window.initMap = initMap;
