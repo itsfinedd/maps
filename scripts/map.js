@@ -64,18 +64,21 @@ function initMap() {
   });
 
   const SMICoordenadas = [
-    { lat: -16.416442, lng: -71.481015 }, // Paradero Inicial
-    { lat: -16.414558, lng: -71.482298 }, // Parada intermedia
-   /* { lat: -16.398527, lng: -71.544397 }, // Parada intermedia
-    { lat: -16.402341, lng: -71.542971 }, // Parada intermedia
-    { lat: -16.407585, lng: -71.541123 }, // Parada intermedia
-    { lat: -16.410487, lng: -71.541193 }, // Parada intermedia
-    { lat: -16.413258, lng: -71.541729 }, // Parada en San Miguel
-    { lat: -16.416424, lng: -71.542336 }, // Parada intermedia
-    { lat: -16.418891, lng: -71.542961 }, // Parada intermedia
-    { lat: -16.423235, lng: -71.544436 }, // Parada intermedia
-    { lat: -16.428443, lng: -71.544560 }, // Parada intermedia
-    { lat: -16.432284, lng: -71.544535 }, // Parada final
+    { lat: -16.416442, lng: -71.481015 }, // Paradero inicio Ida Av Jesus
+    { lat: -16.414558, lng: -71.482298 }, // Av LOs Incas
+    { lat: -16.415517, lng: -71.489280 }, // Av REvolucion
+    { lat: -16.415873, lng: -71.488978 }, // Av revolucion
+    { lat: -16.421898, lng: -71.498287 }, // Av Jesus
+    { lat: -16.411897, lng: -71.512653 }, // Kenedy y Av jesus
+    { lat: -16.405472, lng: -71.515430 }, // Jesus con lima
+    { lat: -16.404523, lng: -71.513894 }, // lima y mariscal
+    { lat: -16.399505, lng: -71.521551 }, // Independicia con mariscal
+    { lat: -16.411114, lng: -71.535722 }, // idependenci con alcides carrion
+    { lat: -16.423494, lng: -71.532151 }, // LAcides carrion con Huracacan
+    { lat: -16.425318, lng: -71.543413 }, // carrion con avelino
+    { lat: -16.423040, lng: -71.541570 }, // avelino pos hostal avelino caceres
+    { lat: -16.425318, lng: -71.543413 }, // ruta termino de ruta ida
+   
   */
   ]
 
