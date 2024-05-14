@@ -93,6 +93,12 @@ function initMap() {
     { lat: -16.417168, lng: -71.532936 }, // incas con alcides
     { lat: -16.408703, lng: -71.537064 }, //  alcides con jorge chavez
     { lat: -16.398090, lng: -71.523896 }, //  goyeneche con Muñoz
+    { lat: -16.402931, lng: -71.516571 }, //  Ovalo MAriscal Castilla
+    { lat: -16.411828, lng: -71.512655 }, //  Castilla con Kenedy
+    { lat: -16.421610, lng: -71.498737 }, //  banden
+    { lat: -16.421610, lng: -71.498737 }, //  banden
+    { lat: -16.415875, lng: -71.488988 }, //  revolucion
+    { lat: -16.416433, lng: -71.481028 }, //  paradero inicio
   ];
 
   const SMVRuta = new google.maps.Polyline({
