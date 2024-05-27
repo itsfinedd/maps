@@ -3427,12 +3427,4 @@ function marcarTodo() {
   }  
 }
 
-function initializeRoutes() {
-  const doloresCheckbox = document.getElementById('ruta-dolores');
-  const doloresIda = [/* Coordenadas de ida */];
-  const doloresVuelta = [/* Coordenadas de vuelta */];
-  toggleRoute(doloresCheckbox, 'Dolores San Martin', '#99ffff', doloresIda, '#ff0080', doloresVuelta);
-
-}
-
 window.initMap = initMap;
