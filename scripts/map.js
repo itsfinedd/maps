@@ -3335,22 +3335,77 @@ function initMap() {
     center: { lat: -16.40588, lng: -71.53165 },
     mapTypeId: "roadmap",
   });
+
+  initializeRoutes();
 }
 
-function spawnroute(route, color, checkbox) {
-  var Trazo = new google.maps.Polyline({
-    path: route,
-    strokeColor: color,
+const legendItems = {};
+
+function createLegendItem(color, name) {
+  if (!legendItems[name]) {
+    const legendContainer = document.getElementById('leyenda-container');
+    const item = document.createElement('div');
+    item.className = 'legend-item';
+
+    const colorBox = document.createElement('div');
+    colorBox.className = 'legend-color';
+    colorBox.style.backgroundColor = color;
+
+    const text = document.createElement('span');
+    text.textContent = name;
+
+    item.appendChild(colorBox);
+    item.appendChild(text);
+    legendContainer.appendChild(item);
+
+    legendItems[name] = item;
+  }
+}
+
+function removeLegendItem(name) {
+  if (legendItems[name]) {
+    const legendContainer = document.getElementById('leyenda-container');
+    legendContainer.removeChild(legendItems[name]);
+    delete legendItems[name];
+  }
+}
+
+function toggleRoute(checkbox, name, colorIda, routeIda, colorVuelta, routeVuelta = null) {
+  const trazoIda = new google.maps.Polyline({
+    path: routeIda,
+    strokeColor: colorIda,
     strokeOpacity: 0.5,
     strokeWeight: 4,
   });
+  const trazoVuelta = routeVuelta ? new google.maps.Polyline({
+    path: routeVuelta,
+    strokeColor: colorVuelta,
+    strokeOpacity: 0.5,
+    strokeWeight: 4,
+  }) : null;
+
   checkbox.addEventListener('change', function() {
-    if (!checkbox.checked) {
-      Trazo.setMap(null);
+    if (checkbox.checked) {
+      trazoIda.setMap(map);
+      if (trazoVuelta) trazoVuelta.setMap(map);
+      createLegendItem(colorIda, `${name} (ida)`);
+      if (trazoVuelta) createLegendItem(colorVuelta, `${name} (vuelta)`);
+    } else {
+      trazoIda.setMap(null);
+      if (trazoVuelta) trazoVuelta.setMap(null);
+      removeLegendItem(`${name} (ida)`);
+      if (trazoVuelta) removeLegendItem(`${name} (vuelta)`);
     }
   });
-  Trazo.setMap(checkbox.checked ? map : null);
+  
+  if (checkbox.checked) {
+    trazoIda.setMap(map);
+    if (trazoVuelta) trazoVuelta.setMap(map);
+    createLegendItem(colorIda, `${name} (ida)`);
+    if (trazoVuelta) createLegendItem(colorVuelta, `${name} (vuelta)`);
+  }
 }
+
 function desmarcarTodo() {
   var ele = document.getElementsByClassName('check');
   for (var i = 0; i < ele.length; i++) {
@@ -3360,16 +3415,24 @@ function desmarcarTodo() {
     }
   }
 }
-function marcarTodo(){
+
+function marcarTodo() {
   desmarcarTodo();
-  var ele=document.getElementsByClassName('check');  
-  for(var i=0; i<ele.length; i++){  
-    if(ele[i].type=='checkbox'){ 
-      ele[i].checked=true;
-      ele[i].onclick();
+  var ele = document.getElementsByClassName('check');  
+  for (var i = 0; i < ele.length; i++) {  
+    if (ele[i].type == 'checkbox') { 
+      ele[i].checked = true;
+      ele[i].dispatchEvent(new Event('change'));
     }
   }  
 }
 
+function initializeRoutes() {
+  const doloresCheckbox = document.getElementById('ruta-dolores');
+  const doloresIda = [/* Coordenadas de ida */];
+  const doloresVuelta = [/* Coordenadas de vuelta */];
+  toggleRoute(doloresCheckbox, 'Dolores San Martin', '#99ffff', doloresIda, '#ff0080', doloresVuelta);
+
+}
 
 window.initMap = initMap;
