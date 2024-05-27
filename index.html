@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> Arequipa Public Transport Map</title>
+    <title>Arequipa Public Transport Map</title>
     <script src="scripts/map.js"></script>
     <link rel="stylesheet" href="css/styles.css">
   </head>
@@ -12,7 +12,6 @@
         <form>
           <label form="partida">Origen:</label>
           <input type="text" name="partida" id="partida">
-      
           <label form="llegada">Destino:</label>
           <input type="text" name="llegada" id="llegada">
         </form>
@@ -33,79 +32,103 @@
             <label for="desmarcarTodo"><input type="button" id="desmarcarTodo" value="Desmarcar Todo" onclick="desmarcarTodo();"></label>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(r1_dolores_ida,'#99ffff',this);spawnroute(r1_dolores_vuelta,'#ff0080',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'Dolores San Martin', '#99ffff', r1_dolores_ida, '#ff0080', r1_dolores_vuelta);"></td>
             <td><label for="dolores">Dolores San Martin</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(cotumA_ida,'#ffff00',this);spawnroute(cotumA_vuelta,'#80ff00',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'Cotum A', '#ffff00', cotumA_ida, '#80ff00', cotumA_vuelta);"></td>
             <td><label for="cotum">Cotum A</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(MirafloresAIda,'#ff7a7a',this);spawnroute(MirafloresAVuelta,'#99ffff',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'Miraflores', '#ff7a7a', MirafloresAIda, '#99ffff', MirafloresAVuelta);"></td>
             <td><label for="miraflores">Miraflores</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(AltoSelvaAIda,'#ff99c3',this);spawnroute(AltoSelvaAVuelta,'#ff9999',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'Alto Selva A', '#ff99c3', AltoSelvaAIda, '#ff9999', AltoSelvaAVuelta);"></td>
             <td><label for="c4union">Alto Selva A</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(cononorte,'#26051b',this);spawnroute(cononorte,'#999fff',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'Cono Norte', '#26051b', cononorte);"></td>
             <td><label for="cono-norte">Cono Norte</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(BjuanIda,'#8f1fff',this);spawnroute(BjuanVuelta,'#ff92ff',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'BJuanXXIII', '#8f1fff', BjuanIda, '#ff92ff', BjuanVuelta);"></td>
             <td><label for="bjuan">BJuanXXIII</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(aqp7_09Ida,'#99ff99',this);spawnroute(aqp7_09Vuelta,'#ff00ff',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'C7-9 AQP Masivo', '#99ff99', aqp7_09Ida, '#ff00ff', aqp7_09Vuelta);"></td>
             <td><label for="aqpmasivo">C7-9 AQP Masivo</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(aqp7_05Ida,'#034d3f',this);spawnroute(aqp7_05Vuelta,'#00fff1',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'C7-5 AQP Masivo Alto Libertad', '#034d3f', aqp7_05Ida, '#00fff1', aqp7_05Vuelta);"></td>
             <td><label for="aqpmasivo-alto">C7-5 AQP Masivo Alto Libertad</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(CoctubreIda,'#cc999f',this);spawnroute(CoctubreVuelta,'#1dab00',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'C-3 de octubre', '#cc999f', CoctubreIda, '#1dab00', CoctubreVuelta);"></td>
             <td><label for="coctubre3">C-3 de octubre</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(aqpmasivo7Ida,'#a8bff2',this);spawnroute(aqpmasivo7Vuelta,'#7af3bd',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'C7 AQPMasivo', '#a8bff2', aqpmasivo7Ida, '#7af3bd', aqpmasivo7Vuelta);"></td>
             <td><label for="aqpmasivo7">C7 AQPMasivo</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(mariano,'#824311',this);spawnroute(mariano,'#e2b41f',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'A-Mariano Melgar', '#824311', mariano);"></td>
             <td><label for="marianomelgar">A-Mariano Melgar</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(polanco,'#88007e',this);spawnroute(polanco,'#ff33df',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'B-Polanco', '#88007e', polanco);"></td>
             <td><label for="polanco">B-Polanco</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(BoctubreIda,'#2a0071',this);spawnroute(BoctubreVuelta,'#227272',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'B-3 de octubre', '#2a0071', BoctubreIda, '#227272', BoctubreVuelta);"></td>
             <td><label for="boctubre3">B-3 de octubre</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(enaceIda,'#14ff00',this);spawnroute(enaceVuelta,'#8b7a0a',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'Cayma Enace', '#14ff00', enaceIda, '#8b7a0a', enaceVuelta);"></td>
             <td><label for="enace">Cayma Enace</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(SMICoordenadas,'#7D2181',this);spawnroute(SMVCoordenadas,'#ff8000',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'La Perla', '#7D2181', SMICoordenadas, '#ff8000', SMVCoordenadas);"></td>
             <td><label for="perla">La Perla</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(CICoordenadas,'#ff0000',this);spawnroute(CVCoordenadas,'#0000ff',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, '15 de Agosto', '#ff0000', CICoordenadas, '#0000ff', CVCoordenadas);"></td>
             <td><label for="agosto15">15 de Agosto</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(oriolIda,'#ffed79',this);spawnroute(oriolVuelta,'#0c540c',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'Oriol-A', '#ffed79', oriolIda, '#0c540c', oriolVuelta);"></td>
             <td><label for="oriol">Oriol-A</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="spawnroute(uchumayoIda,'#ff00a8',this);spawnroute(uchumayoIda,'#4c6b70',this);"></td>
+            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'Uchumayo', '#ff00a8', uchumayoIda);"></td>
             <td><label for="uchumayo">Uchumayo</label></td>
           </tr>
         </table>
+        <div id="leyenda-container"></div>
+      </div>
     </div>
-    </div>
+
+    <script>
+      function desmarcarTodo() {
+        var ele = document.getElementsByClassName('check');
+        for (var i = 0; i < ele.length; i++) {
+          if (ele[i].type == 'checkbox') {
+            ele[i].checked = false;
+            ele[i].dispatchEvent(new Event('change'));
+          }
+        }
+      }
+
+      function marcarTodo(){
+        desmarcarTodo();
+        var ele=document.getElementsByClassName('check');  
+        for(var i=0; i<ele.length; i++){  
+          if(ele[i].type=='checkbox'){ 
+            ele[i].checked=true;
+            ele[i].onclick();
+          }
+        }  
+      }
+    </script>
   </body>
 </html>
