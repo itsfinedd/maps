@@ -38,11 +38,7 @@ h3 {
   padding-right: 15px;
   padding-left: 15px;
 }
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid;
-}
+
 #rutas {
   margin: 5px;
   padding: 5px;
@@ -64,4 +60,20 @@ table {
   height: 20px;
   margin-right: 10px;
   border: 1px solid #000;
+}
+
+#pida {
+  width: 30px;
+  margin: auto;
+  background: url("../images/paraderoida.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+#pvuelta {
+  width: 30px;
+  margin: auto;
+  background: url("../images/paraderovuelta.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
