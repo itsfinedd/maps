@@ -84,6 +84,28 @@ h3 {
   background-repeat: no-repeat;
 }
 
+#loc-container .legend-icon{
+  background: url("../images/location.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+}
+#dest-container .legend-icon{
+  background: url("../images/destiny.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#parini-container .legend-icon{
+  background: url("../images/paraderocercano.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#parfin-container .legend-icon{
+  background: url("../images/paradero.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 .legend-icon {
   width: 20px;
   height: 20px;

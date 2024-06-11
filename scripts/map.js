@@ -1,5 +1,5 @@
 let map;
-let ubi;
+let ubi = {lat:-16.434164, lng:-71.526484};
 let destiny;
 const rutas = [cotumA_ida, cotumA_vuelta, r1_dolores_ida, r1_dolores_vuelta, MirafloresAIda, MirafloresAVuelta, AltoSelvaAIda, AltoSelvaAVuelta, cononorte, cononorte, BjuanIda, BjuanVuelta, aqp7_05Ida, aqp7_05Vuelta, CotumBIda, CotumBVuelta, CoctubreIda, CoctubreVuelta, aqpmasivo7Ida, aqpmasivo7Vuelta, polanco, polanco, mariano, mariano, enaceIda, enaceVuelta, BoctubreIda, BoctubreVuelta, SMICoordenadas, SMVCoordenadas, CICoordenadas, CVCoordenadas,uchumayoIda, uchumayoIda, oriolIda, oriolVuelta];
 
@@ -74,7 +74,7 @@ function addMarkers(checkbox, positionsIda, positionsVuelta) {
     });
   });
 }
-
+/*
 function addMarker(checkbox, positions) {
   var markers = [];
   positions.forEach(function(position) {
@@ -92,7 +92,7 @@ function addMarker(checkbox, positions) {
     });
   });
 }
-
+*/
 const legendItems = {};
 
 function createLegendItem(color, name) {
@@ -179,10 +179,11 @@ function marcarTodo(){
 
 
 function minDistance(destination) {
-  let closestParadero = null;
-  let closestDistance = Number.MAX_VALUE;
-  let closestIndex = -1;
-  
+  let minParadero = null;
+  let minDistance = Number.MAX_VALUE;
+  let minIndex = -1;
+  let minUbi = null;
+  let minUbiDis = Number.MAX_VALUE;
   paraderos.forEach(function(paradero, index) {
     paradero.forEach(function(position) {
       const distance = google.maps.geometry.spherical.computeDistanceBetween(
@@ -190,26 +191,36 @@ function minDistance(destination) {
         new google.maps.LatLng(position.lat, position.lng)
       );
 
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestParadero = position;
-        closestIndex = index;
+      if (distance < minDistance) {
+        minDistance = distance;
+        minParadero = position;
+        minIndex = index;
       }
     });
   });
-  return { paradero: closestParadero, index: closestIndex };
+
+  paraderos[minIndex].forEach(function(position) {
+    const dis = google.maps.geometry.spherical.computeDistanceBetween(
+      new google.maps.LatLng(ubi.lat, ubi.lng),
+      new google.maps.LatLng(position.lat, ubi.lng)
+    );
+    if(dis < minUbiDis){
+      minUbiDis = dis;
+      minUbi = position;
+    }
+  });
+  return { paradero: minParadero, index: minIndex, minUbi: minUbi};
 }
 
 function showRoute(destination) {
-  const { paradero, index } = minDistance(destination);
+  const { paradero, index, minUbi } = minDistance(destination);
   if (paradero && index !== -1) {
     const trazo = new google.maps.Polyline({
       path: rutas[index],
-      strokeColor: "#990099",
+      strokeColor: "#0000ff",
       strokeOpacity: 0.5,
-      strokeWeight: 4,
+      strokeWeight: 7,
     });
-
     const marker = new google.maps.Marker({
       position: paradero,
       map: map,
@@ -220,10 +231,27 @@ function showRoute(destination) {
       map: map,
       icon: "./images/destiny.png"
     });
+    const ubiMarker = new google.maps.Marker({
+    position: ubi,
+    map: map,
+    icon: "./images/location.png"
+  });
+    const marker3 = new google.maps.Marker({
+      position: minUbi,
+      map: map,
+      icon: "./images/paraderocercano.png"
+    });
+    /*
+    paraderos[index].forEach(function(position) {
+    var marker2 = new google.maps.Marker({
+      position: position,
+      map : map,
+      icon: "./images/paraderoida.png"
+    });
+  });*/
     map.setCenter(paradero);
     trazo.setMap(map);
   }
 }
-
 
 window.initMap = initMap;
