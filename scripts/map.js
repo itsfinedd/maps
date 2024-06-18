@@ -1,10 +1,6 @@
 let map;
 let ubi = {lat:-16.393547, lng:-71.549845};
 let destiny;
-let directionsService;
-let directionsRenderer;
-let markers = [];
-let polylines = [];
 const nombres = ["Cotum A", "Dolores San Martin ", "A15-Miraflores (c4union aqp)","Alto Selva A(C4 Unión AQP)","C2-4D(Cono Norte)","BJUANXXIII","C7-5 AQP Masivo Alto Libertad","C11 Cotum B","C - 3 de octubre","C7 AqpMasivo 7-09","B-Polanco","A-Mariano Melgar","Cayma Enace","B- 3 de octubre","La Perla S.R.L.T.D.A","15 de agosto","Uchumayo","Oriol - A"];
 const rutas = [cotumA_ida, cotumA_vuelta, r1_dolores_ida, r1_dolores_vuelta, MirafloresAIda, MirafloresAVuelta, AltoSelvaAIda, AltoSelvaAVuelta, cononorte, cononorte, BjuanIda, BjuanVuelta, aqp7_05Ida, aqp7_05Vuelta, CotumBIda, CotumBVuelta, CoctubreIda, CoctubreVuelta, aqpmasivo7Ida, aqpmasivo7Vuelta, polanco, polanco, mariano, mariano, enaceIda, enaceVuelta, BoctubreIda, BoctubreVuelta, SMICoordenadas, SMVCoordenadas, CICoordenadas, CVCoordenadas,uchumayoIda, uchumayoIda, oriolIda, oriolVuelta];
 
@@ -54,7 +50,8 @@ function showPosition(position) {
     icon: "./images/location.png"
   });
 }
-
+let markers = [];
+let polylines = [];
 function addMarkers(checkbox, positionsIda, positionsVuelta) {
   var markers1 = [];
   positionsIda.forEach(function(position) {
@@ -182,6 +179,7 @@ function marcarTodo(){
   }  
 }
 
+
 function minDistance(destination) {
   let minParadero = null;
   let minDistance = Number.MAX_VALUE;
@@ -228,11 +226,10 @@ function clearMap() {
   markers = [];
   polylines.forEach(polyline => polyline.setMap(null));
   polylines = [];
-  if (directionsRenderer) {
+  directions.forEach(directionsRenderer => {
     directionsRenderer.setMap(null);
-    directionsRenderer = null;
-  }
-  directionsService = new google.maps.DirectionsService();
+  });
+  directionsRenderers = [];
 }
 function showRoute(destination) {
   clearMap();
@@ -300,11 +297,14 @@ function showRoute(destination) {
     calcularRuta(paradero, destiny);
   }
 }
+let directions = [];
 function calcularRuta(origen, destino) {
-  directionsRenderer = new google.maps.DirectionsRenderer({
+  const directionsService = new google.maps.DirectionsService();
+  const directionsRenderer = new google.maps.DirectionsRenderer({
     map: map,
     suppressMarkers: true,
   });
+  directions.push(directionsRenderer);
   const request = {
     origin: origen,
     destination: destino,
