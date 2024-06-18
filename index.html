@@ -12,15 +12,16 @@
     <div id="ingreso-container">
       <div id="ingreso">
         <button onclick="getLocation();">Obtener ubicación</button>
-          <label form="llegada">Destino:</label>
-          <input type="text" name="llegada" id="llegada" placeholder="Ingrese su destino">
+        <label form="llegada">Destino:</label>
+        <input type="text" name="llegada" id="llegada" placeholder="Ingrese su destino">
+        <button onclick="clearMap();">Limpiar Mapa</button>
       </div>
     </div>
 
     <div id="map-container">
       <div id="map">
         <script async defer 
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjEfe6H06RR3ft62XcdW9QV6ny-lw9xCc&loading=async&callback=initMap&libraries=marker,geometry,places&v=beta" 
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8FH61hYJ0jIHS4qSKwrU-rmPS0L4XVRI&loading=async&callback=initMap&libraries=marker,geometry,places&v=beta" 
         ></script>
       </div>
       <div id="rutas">
@@ -32,71 +33,71 @@
           </tr>
           <tr><td></td><td><b>Rutas</b></td><tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'Dolores San Martin', '#99ffff', r1_dolores_ida, '#ff0080', r1_dolores_vuelta);addMarkers(this,P_DoloresIda,P_DoloresVuelta);"></td>
+            <td><input type="checkbox" class="check" id="dolores" onclick="toggleRoute(this, 'Dolores San Martin', '#99ffff', r1_dolores_ida, '#ff0080', r1_dolores_vuelta);addMarkers(this,P_DoloresIda,P_DoloresVuelta);"></td>
             <td><label for="dolores">Dolores San Martin</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'Cotum A', '#ffff00', cotumA_ida, '#80ff00', cotumA_vuelta);addMarkers(this,P_CotumAIda,P_CotumAVuelta);"></td>
+            <td><input type="checkbox" class="check" id="cotuma" onclick="toggleRoute(this, 'Cotum A', '#ffff00', cotumA_ida, '#80ff00', cotumA_vuelta);addMarkers(this,P_CotumAIda,P_CotumAVuelta);"></td>
             <td><label for="cotum">Cotum A</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'Miraflores', '#ff7a7a', MirafloresAIda, '#00f00f', MirafloresAVuelta);addMarkers(this,P_MirafloresIda,P_MirafloresVuelta);"></td>
+            <td><input type="checkbox" class="check" id="miraflores" onclick="toggleRoute(this, 'Miraflores', '#ff7a7a', MirafloresAIda, '#00f00f', MirafloresAVuelta);addMarkers(this,P_MirafloresIda,P_MirafloresVuelta);"></td>
             <td><label for="miraflores">Miraflores</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'Cono Norte', '#0070B8', cononorte);addMarkers(this,P_ConoIda,P_ConoVuelta);"></td>
+            <td><input type="checkbox" class="check" id="cono" onclick="toggleRoute(this, 'Cono Norte', '#0070B8', cononorte);addMarkers(this,P_ConoIda,P_ConoVuelta);"></td>
             <td><label for="cono-norte">Cono Norte</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'BJuanXXIII', '#8f1fff', BjuanIda, '#ff92ff', BjuanVuelta);addMarkers(this,P_BJuanIda,P_BJuanVuelta);"></td>
+            <td><input type="checkbox" class="check" id="bjuan" onclick="toggleRoute(this, 'BJuanXXIII', '#8f1fff', BjuanIda, '#ff92ff', BjuanVuelta);addMarkers(this,P_BJuanIda,P_BJuanVuelta);"></td>
             <td><label for="bjuan">BJuanXXIII</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'C7-9 AQP Masivo', '#99ff99', CotumBIda, '#ff00ff', CotumBVuelta);addMarkers(this,P_CotumBIda,P_CotumBVuelta);"></td>
+            <td><input type="checkbox" class="check" id="cotumb" onclick="toggleRoute(this, 'Cotum B', '#99ff99', CotumBIda, '#ff00ff', CotumBVuelta);addMarkers(this,P_CotumBIda,P_CotumBVuelta);"></td>
             <td><label for="cotumb">C11 Cotum B</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'C7-5 AQP Masivo Alto Libertad', '#0380f0', aqp7_05Ida, '#00fff1', aqp7_05Vuelta);addMarkers(this,P_c75aqpIda,P_c75aqpVuelta);"></td>
+            <td><input type="checkbox" class="check" id="c75" onclick="toggleRoute(this, 'C7-5 AQP Masivo Alto Libertad', '#0380f0', aqp7_05Ida, '#00fff1', aqp7_05Vuelta);addMarkers(this,P_c75aqpIda,P_c75aqpVuelta);"></td>
             <td><label for="aqpmasivo-alto">C7-5 AQP Masivo Alto Libertad</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'C-3 de octubre', '#cc999f', CoctubreIda, '#1dab00', CoctubreVuelta);addMarkers(this,P_COctubreIDA,P_COctubreVuelta);"></td>
+            <td><input type="checkbox" class="check" id="c3octubre" onclick="toggleRoute(this, 'C-3 de octubre', '#cc999f', CoctubreIda, '#1dab00', CoctubreVuelta);addMarkers(this,P_COctubreIDA,P_COctubreVuelta);"></td>
             <td><label for="coctubre3">C-3 de octubre</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'C7 AQPMasivo', '#a8bff2', aqpmasivo7Ida, '#7af3bd', aqpmasivo7Vuelta);addMarkers(this,P_c79aqpIda,P_c79aqpVuelta);"></td>
+            <td><input type="checkbox" class="check" id="c79" onclick="toggleRoute(this, 'C7-9 AQPMasivo', '#a8bff2', aqpmasivo7Ida, '#7af3bd', aqpmasivo7Vuelta);addMarkers(this,P_c79aqpIda,P_c79aqpVuelta);"></td>
             <td><label for="aqpmasivo7">C7-9 AQPMasivo</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'A-Mariano Melgar', '#824311', mariano);addMarkers(this,P_MarianoIda,P_MarianoVuelta);"></td>
+            <td><input type="checkbox" class="check" id="mariano" onclick="toggleRoute(this, 'A-Mariano Melgar', '#824311', mariano);addMarkers(this,P_MarianoIda,P_MarianoVuelta);"></td>
             <td><label for="marianomelgar">A-Mariano Melgar</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'B-Polanco', '#88007e', polanco);addMarkers(this,P_PolancoIda,P_PolancoVuelta);"></td>
+            <td><input type="checkbox" class="check" id="polanco" onclick="toggleRoute(this, 'B-Polanco', '#88007e', polanco);addMarkers(this,P_PolancoIda,P_PolancoVuelta);"></td>
             <td><label for="polanco">B-Polanco</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'B-3 de octubre', '#2a0071', BoctubreIda, '#229972', BoctubreVuelta);addMarkers(this,P_Boctubre,P_Boctubre);"></td>
+            <td><input type="checkbox" class="check" id="b3octubre" onclick="toggleRoute(this, 'B-3 de octubre', '#2a0071', BoctubreIda, '#229972', BoctubreVuelta);addMarkers(this,P_Boctubre,P_Boctubre);"></td>
             <td><label for="boctubre3">B-3 de octubre</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'Cayma Enace', '#14ff00', enaceIda, '#8b7a0a', enaceVuelta);addMarkers(this,P_CaymaIda,P_CaymaVuelta);"></td>
+            <td><input type="checkbox" class="check" id="cayma" onclick="toggleRoute(this, 'Cayma Enace', '#14ff00', enaceIda, '#8b7a0a', enaceVuelta);addMarkers(this,P_CaymaIda,P_CaymaVuelta);"></td>
             <td><label for="enace">Cayma Enace</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'La Perla', '#7D2181', SMICoordenadas, '#ff8000', SMVCoordenadas);addMarkers(this,P_PerlaIda,P_PerlaVuelta);"></td>
+            <td><input type="checkbox" class="check" id="perla" onclick="toggleRoute(this, 'La Perla', '#7D2181', SMICoordenadas, '#ff8000', SMVCoordenadas);addMarkers(this,P_PerlaIda,P_PerlaVuelta);"></td>
             <td><label for="perla">La Perla</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, '15 de Agosto', '#ff0000', CICoordenadas, '#0000ff', CVCoordenadas);addMarkers(this,P_AgostoIda,P_AgostoVuelta);"></td>
+            <td><input type="checkbox" class="check" id="agosto" onclick="toggleRoute(this, '15 de Agosto', '#ff0000', CICoordenadas, '#0000ff', CVCoordenadas);addMarkers(this,P_AgostoIda,P_AgostoVuelta);"></td>
             <td><label for="agosto15">15 de Agosto</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'Oriol-A', '#ffed79', oriolIda, '#0c540c', oriolVuelta);addMarkers(this,P_OriolIda,P_OriolVuelta);"></td>
+            <td><input type="checkbox" class="check" id="oriol" onclick="toggleRoute(this, 'Oriol-A', '#ffed79', oriolIda, '#0c540c', oriolVuelta);addMarkers(this,P_OriolIda,P_OriolVuelta);"></td>
             <td><label for="oriol">Oriol-A</label></td>
           </tr>
           <tr>
-            <td><input type="checkbox" class="check" onclick="toggleRoute(this, 'Uchumayo', '#ff00a8', uchumayoIda);addMarkers(this,P_UchumayoIda,P_UchumayoVuelta);"></td>
+            <td><input type="checkbox" class="check" id="uchumayo" onclick="toggleRoute(this, 'Uchumayo', '#ff00a8', uchumayoIda);addMarkers(this,P_UchumayoIda,P_UchumayoVuelta);"></td>
             <td><label for="uchumayo">Uchumayo</label></td>
           </tr>
         </table>
@@ -122,11 +123,11 @@
        </div>
       <div class="legend-item" id="parini-container">
          <div class="legend-icon" id="parini"></div>
-         <span>Paradero cercano</span>
+         <span>Paradero donde tomar bus</span>
       </div>
       <div class="legend-item" id="parfin-container">
          <div class="legend-icon" id="parfin"></div>
-         <span>Paradero destino</span>
+         <span>Paradero donde bajar</span>
       </div>
     </div>
   </body>

@@ -1,6 +1,7 @@
 let map;
-let ubi = {lat:-16.434164, lng:-71.526484};
+let ubi = {lat:-16.393547, lng:-71.549845};
 let destiny;
+const nombres = ["Cotum A", "Dolores San Martin ", "A15-Miraflores (c4union aqp)","Alto Selva A(C4 Unión AQP)","C2-4D(Cono Norte)","BJUANXXIII","C7-5 AQP Masivo Alto Libertad","C11 Cotum B","C - 3 de octubre","C7 AqpMasivo 7-09","B-Polanco","A-Mariano Melgar","Cayma Enace","B- 3 de octubre","La Perla S.R.L.T.D.A","15 de agosto","Uchumayo","Oriol - A"];
 const rutas = [cotumA_ida, cotumA_vuelta, r1_dolores_ida, r1_dolores_vuelta, MirafloresAIda, MirafloresAVuelta, AltoSelvaAIda, AltoSelvaAVuelta, cononorte, cononorte, BjuanIda, BjuanVuelta, aqp7_05Ida, aqp7_05Vuelta, CotumBIda, CotumBVuelta, CoctubreIda, CoctubreVuelta, aqpmasivo7Ida, aqpmasivo7Vuelta, polanco, polanco, mariano, mariano, enaceIda, enaceVuelta, BoctubreIda, BoctubreVuelta, SMICoordenadas, SMVCoordenadas, CICoordenadas, CVCoordenadas,uchumayoIda, uchumayoIda, oriolIda, oriolVuelta];
 
 const paraderos = [P_CotumAIda, P_CotumAVuelta, P_DoloresIda, P_DoloresVuelta, P_MirafloresIda, P_MirafloresVuelta, P_AltoSelvaIda, P_AltoSelvaVuelta, P_ConoIda, P_ConoVuelta, P_BJuanIda, P_BJuanVuelta, P_c75aqpIda, P_c75aqpVuelta, P_CotumBIda, P_CotumBVuelta, P_COctubreIDA, P_COctubreVuelta, P_c79aqpIda, P_c79aqpVuelta, P_PolancoIda, P_PolancoVuelta, P_MarianoIda, P_MarianoVuelta, P_CaymaIda, P_CaymaVuelta, P_Boctubre, P_Boctubre, P_PerlaIda, P_PerlaVuelta, P_AgostoIda, P_AgostoVuelta, P_UchumayoIda, P_UchumayoVuelta, P_OriolIda, P_OriolVuelta];
@@ -49,27 +50,28 @@ function showPosition(position) {
     icon: "./images/location.png"
   });
 }
-
+let markers = [];
+let polylines = [];
 function addMarkers(checkbox, positionsIda, positionsVuelta) {
-  var markers = [];
+  var markers1 = [];
   positionsIda.forEach(function(position) {
     var marker = new google.maps.Marker({
       position: position,
       map: checkbox.checked ? map : null,
-      icon: "./images/paraderoida.png"
+      icon: "./images/paraderoida.png",
     });
-    markers.push(marker);
+    markers1.push(marker);
   });
   positionsVuelta.forEach(function(position) {
     var marker = new google.maps.Marker({
       position: position,
       map: checkbox.checked ? map : null,
-      icon: "./images/paraderovuelta.png"
+      icon: "./images/paraderovuelta.png",
     });
-    markers.push(marker);
+    markers1.push(marker);
   });
   checkbox.addEventListener('change', function() {
-    markers.forEach(function(marker) {
+    markers1.forEach(function(marker) {
       marker.setMap(checkbox.checked ? map : null);
     });
   });
@@ -184,11 +186,12 @@ function minDistance(destination) {
   let minIndex = -1;
   let minUbi = null;
   let minUbiDis = Number.MAX_VALUE;
+
   paraderos.forEach(function(paradero, index) {
     paradero.forEach(function(position) {
-      const distance = google.maps.geometry.spherical.computeDistanceBetween(
-        new google.maps.LatLng(destination.lat, destination.lng),
-        new google.maps.LatLng(position.lat, position.lng)
+      const distance = euclideanDistance(
+        { lat: destination.lat, lng: destination.lng },
+        { lat: position.lat, lng: position.lng }
       );
 
       if (distance < minDistance) {
@@ -200,24 +203,43 @@ function minDistance(destination) {
   });
 
   paraderos[minIndex].forEach(function(position) {
-    const dis = google.maps.geometry.spherical.computeDistanceBetween(
-      new google.maps.LatLng(ubi.lat, ubi.lng),
-      new google.maps.LatLng(position.lat, ubi.lng)
+    const dis = euclideanDistance(
+      { lat: ubi.lat, lng: ubi.lng },
+      { lat: position.lat, lng: position.lng }
     );
     if(dis < minUbiDis){
       minUbiDis = dis;
       minUbi = position;
     }
   });
-  return { paradero: minParadero, index: minIndex, minUbi: minUbi};
+
+  return { paradero: minParadero, index: minIndex, minUbi: minUbi };
 }
 
+function euclideanDistance(point1, point2) {
+  const dx = point2.lat - point1.lat;
+  const dy = point2.lng - point1.lng;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+function clearMap() {
+  markers.forEach(marker => marker.setMap(null));
+  markers = [];
+  polylines.forEach(polyline => polyline.setMap(null));
+  polylines = [];
+}
 function showRoute(destination) {
+  clearMap();
   const { paradero, index, minUbi } = minDistance(destination);
+  var indiceNombres;
+  if(index%2==0){
+    indiceNombres = index/2;
+  }else{
+    indiceNombres = (index -1)/2;
+  }
   if (paradero && index !== -1) {
     const trazo = new google.maps.Polyline({
       path: rutas[index],
-      strokeColor: "#0000ff",
+      strokeColor: "#ff0000",
       strokeOpacity: 0.5,
       strokeWeight: 7,
     });
@@ -236,10 +258,23 @@ function showRoute(destination) {
     map: map,
     icon: "./images/location.png"
   });
+
     const marker3 = new google.maps.Marker({
       position: minUbi,
       map: map,
       icon: "./images/paraderocercano.png"
+    });
+    const contentString = '<div id="content">' +
+      `<h2>Ruta</h2><h3>${nombres[indiceNombres]}</h3>` +
+      '</div>';
+    const infowindow = new google.maps.InfoWindow({
+      content: contentString,
+      ariaLabel: nombres[index], 
+    });
+
+    trazo.addListener('click', function(event) {
+      infowindow.setPosition(event.latLng);
+      infowindow.open(map);
     });
     /*
     paraderos[index].forEach(function(position) {
@@ -249,9 +284,32 @@ function showRoute(destination) {
       icon: "./images/paraderoida.png"
     });
   });*/
+    polylines.push(trazo);
+    markers.push(marker, marker2, ubiMarker, marker3);
     map.setCenter(paradero);
     trazo.setMap(map);
+
+    calcularRuta(ubi, minUbi);
+    calcularRuta(paradero, destiny);
   }
 }
-
+function calcularRuta(origen, destino) {
+  const directionsService = new google.maps.DirectionsService();
+  const directionsRenderer = new google.maps.DirectionsRenderer({
+    map: map,
+    suppressMarkers: true,
+  });
+  const request = {
+    origin: origen,
+    destination: destino,
+    travelMode: google.maps.TravelMode.DRIVING,
+  };
+  directionsService.route(request, function(result, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsRenderer.setDirections(result);
+    } else {
+      console.error("Error al calcular la ruta:", status);
+    }
+  });
+}
 window.initMap = initMap;

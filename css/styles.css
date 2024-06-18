@@ -105,6 +105,8 @@ h3 {
   background: url("../images/paradero.png");
   background-size: contain;
   background-repeat: no-repeat;
+  
+
 }
 .legend-icon {
   width: 20px;
@@ -112,3 +114,9 @@ h3 {
   margin-right: 10px;
 }
 
+#content h2{
+  color: blue;
+}
+#content h3{
+  color: black;
+}
