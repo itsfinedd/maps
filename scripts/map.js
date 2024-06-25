@@ -290,7 +290,6 @@ function showRoute(destination) {
   });*/
     polylines.push(trazo);
     markers.push(marker, marker2, ubiMarker, marker3);
-    map.setCenter(paradero);
     trazo.setMap(map);
 
     calcularRuta(ubi, minUbi);
