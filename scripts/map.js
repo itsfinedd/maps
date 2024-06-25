@@ -76,25 +76,7 @@ function addMarkers(checkbox, positionsIda, positionsVuelta) {
     });
   });
 }
-/*
-function addMarker(checkbox, positions) {
-  var markers = [];
-  positions.forEach(function(position) {
-    var marker = new google.maps.Marker({
-      position: position,
-      map: checkbox.checked ? map : null,
-      icon: "./images/paraderoida.png"
-    });
 
-    markers.push(marker);
-  });
-  checkbox.addEventListener('change', function() {
-    markers.forEach(function(marker) {
-      marker.setMap(checkbox.checked ? map : null);
-    });
-  });
-}
-*/
 const legendItems = {};
 
 function createLegendItem(color, name) {
@@ -280,14 +262,6 @@ function showRoute(destination) {
       infowindow.setPosition(event.latLng);
       infowindow.open(map);
     });
-    /*
-    paraderos[index].forEach(function(position) {
-    var marker2 = new google.maps.Marker({
-      position: position,
-      map : map,
-      icon: "./images/paraderoida.png"
-    });
-  });*/
     polylines.push(trazo);
     markers.push(marker, marker2, ubiMarker, marker3);
     trazo.setMap(map);
