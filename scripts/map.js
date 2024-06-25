@@ -281,7 +281,7 @@ function calcularRuta(origen, destino) {
   const request = {
     origin: origen,
     destination: destino,
-    travelMode: google.maps.TravelMode.DRIVING,
+    travelMode: google.maps.TravelMode.WALKING,
   };
   directionsService.route(request, function(result, status) {
     if (status == google.maps.DirectionsStatus.OK) {
