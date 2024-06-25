@@ -268,6 +268,7 @@ function showRoute(destination) {
 
     calcularRuta(ubi, minUbi);
     calcularRuta(paradero, destiny);
+    alert(`Ruta a tomar: ${nombres[indiceNombres]}`);
   }
 }
 let directions = [];
